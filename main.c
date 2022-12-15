@@ -1,26 +1,21 @@
-#include "mlx.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/15 10:41:58 by skoulen           #+#    #+#             */
+/*   Updated: 2022/12/15 10:56:40 by skoulen          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-typedef struct	s_data
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_data;
+#include "fdf.h"
 
-void	pixel_put(t_data *data, int x, int y, int color)
-{
-	char *dst;
+#define WIDTH 1920
+#define HEIGHT 1080
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
-
-# define WIDTH 1920
-# define HEIGHT 1080
-
-# define TITLE "fdf"
+#define TITLE "fdf"
 
 int main()
 {
@@ -34,12 +29,15 @@ int main()
 	img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	
-	pixel_put(&img, WIDTH / 2, HEIGHT / 2, 0x00FFFF00);
-	pixel_put(&img, WIDTH / 2 + 1, HEIGHT / 2, 0x00FFFF00);
-	pixel_put(&img, WIDTH / 2 + 2, HEIGHT / 2, 0x00FFFF00);
-	pixel_put(&img, WIDTH / 2 + 3, HEIGHT / 2, 0x00FFFF00);
-	pixel_put(&img, WIDTH / 2 + 4, HEIGHT / 2, 0x00FFFF00);
+	/*t_point p0 = (t_point){0, HEIGHT / 2};
+	t_point p1 = (t_point){WIDTH - 1, HEIGHT / 2};
 
+	pixel_put(&img, p0.x, p0.y, RED);
+	pixel_put(&img, p1.x, p1.y, RED);
+
+	bresenhamLine(p0, p1, &img);
+*/
+	drawCube(WIDTH / 2, HEIGHT / 2, 5, 42, &img);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 
 	mlx_loop(mlx);

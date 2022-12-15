@@ -1,12 +1,28 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/12/15 10:42:00 by skoulen           #+#    #+#              #
+#    Updated: 2022/12/15 10:55:44 by skoulen          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
 NAME = fdf
 
 INCLUDE_PATH = -I. -Imlx
-LIB_PATH = -L. -lmlx -framework OpenGL -framework AppKit
+LIB_PATH = -L. -lmlx -framework OpenGL -framework AppKit -lm
 
-SRCS = main.c
+SRCS = main.c \
+line.c \
+cube.c \
+pixel_put.c \
+utils.c
 
 all: $(NAME)
 
