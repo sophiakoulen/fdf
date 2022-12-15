@@ -6,14 +6,11 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:41:58 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/15 10:56:40 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/15 16:03:39 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-#define WIDTH 1920
-#define HEIGHT 1080
 
 #define TITLE "fdf"
 
@@ -29,15 +26,19 @@ int main()
 	img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	
-	/*t_point p0 = (t_point){0, HEIGHT / 2};
-	t_point p1 = (t_point){WIDTH - 1, HEIGHT / 2};
 
-	pixel_put(&img, p0.x, p0.y, RED);
-	pixel_put(&img, p1.x, p1.y, RED);
+	t_vector3 cubePos1 = (t_vector3){25, 0, 80};
+	t_vector3 cubePos2 = (t_vector3){-30, 0, 80};
+	t_vector3 cubePos3 = (t_vector3){100, 0, 80};
+	t_vector3 cubePos4 = (t_vector3){-100, 0, 80};
 
-	bresenhamLine(p0, p1, &img);
-*/
-	drawCube(WIDTH / 2, HEIGHT / 2, 5, 42, &img);
+	t_camera camera = (t_camera){150, (t_vector3){0, 0, -25}};
+
+	drawCube(cubePos1, 42, camera, &img);
+	drawCube(cubePos2, 42, camera, &img);
+	drawCube(cubePos3, 42, camera, &img);
+	drawCube(cubePos4, 42, camera, &img);
+
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 
 	mlx_loop(mlx);

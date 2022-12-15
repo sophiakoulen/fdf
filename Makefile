@@ -6,7 +6,7 @@
 #    By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/15 10:42:00 by skoulen           #+#    #+#              #
-#    Updated: 2022/12/15 10:55:44 by skoulen          ###   ########.fr        #
+#    Updated: 2022/12/15 13:39:35 by skoulen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS = main.c \
 line.c \
 cube.c \
 pixel_put.c \
+projection.c \
 utils.c
 
 all: $(NAME)
