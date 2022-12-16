@@ -6,12 +6,12 @@
 #    By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/15 10:42:00 by skoulen           #+#    #+#              #
-#    Updated: 2022/12/15 13:39:35 by skoulen          ###   ########.fr        #
+#    Updated: 2022/12/16 12:09:48 by skoulen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 
 NAME = fdf
 
@@ -23,7 +23,9 @@ line.c \
 cube.c \
 pixel_put.c \
 projection.c \
-utils.c
+utils.c \
+event_handlers.c \
+render.c
 
 all: $(NAME)
 

@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pixel_put.c                                        :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/15 10:42:49 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/16 11:45:36 by skoulen          ###   ########.fr       */
+/*   Created: 2022/12/16 12:08:50 by skoulen           #+#    #+#             */
+/*   Updated: 2022/12/16 12:09:07 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	pixel_put(t_img_data *data, int x, int y, int color)
+void	render(void	*mlx, void *window, t_cube *cube, t_camera *camera)
 {
-	char *dst;
+	t_img_data	img;
 
-	x = x + WIDTH / 2;
-	y = -y + HEIGHT / 2;
-	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
-	{
-		return ;
-	}
-	else
-	{
-		dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-		*(unsigned int *)dst = color;
-	}
+	img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+
+	drawCube(cube->position, cube->size, *camera, &img);
+
+	mlx_put_image_to_window(mlx, window, img.img, 0, 0);
 }

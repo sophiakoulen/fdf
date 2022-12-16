@@ -6,13 +6,13 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:43:43 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/15 13:46:09 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/16 11:48:16 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	plotLineLow(t_vector2 p0, t_vector2 p1, t_data *data)
+static void	plotLineLow(t_vector2 p0, t_vector2 p1, t_img_data *data)
 {
 	int	dx = p1.x - p0.x;
 	int	dy = p1.y - p0.y;
@@ -38,7 +38,7 @@ static void	plotLineLow(t_vector2 p0, t_vector2 p1, t_data *data)
 	}
 }
 
-static void	plotLineHigh(t_vector2 p0, t_vector2 p1, t_data *data)
+static void	plotLineHigh(t_vector2 p0, t_vector2 p1, t_img_data *data)
 {
 	int	dx = p1.x - p0.x;
 	int	dy = p1.y - p0.y;
@@ -64,7 +64,7 @@ static void	plotLineHigh(t_vector2 p0, t_vector2 p1, t_data *data)
 	}	
 }
 
-void	bresenhamLine(t_vector2 p0, t_vector2 p1, t_data *data)
+void	bresenhamLine(t_vector2 p0, t_vector2 p1, t_img_data *data)
 {
 	if (abs(p1.y - p0.y) < abs(p1.x - p0.x))
 	{

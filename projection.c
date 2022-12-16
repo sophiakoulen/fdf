@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 13:07:19 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/15 16:01:04 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/16 11:37:34 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ t_vector2	project_perspective(t_vector3 object, t_camera camera)
 	pos = relative_position(object, camera.position);
 	res.x = (float)((float)camera.zoom / (float)pos.z * (float)pos.x);
 	res.y = (float)((float)camera.zoom / (float)pos.z * (float)pos.y);
+
+	//BEWARE OF FLOATING POINT EXCEPTION
+	
 	return (res);
 }
 
