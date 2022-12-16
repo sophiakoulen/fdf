@@ -6,7 +6,7 @@
 #    By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/15 10:42:00 by skoulen           #+#    #+#              #
-#    Updated: 2022/12/16 12:09:48 by skoulen          ###   ########.fr        #
+#    Updated: 2022/12/16 16:32:17 by skoulen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ pixel_put.c \
 projection.c \
 utils.c \
 event_handlers.c \
-render.c
+render.c \
+matrix.c
 
 all: $(NAME)
 

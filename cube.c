@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:50:59 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/16 11:46:39 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/16 14:06:23 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,30 @@ void	drawCube(t_vector3 pos, int size, t_camera camera, t_img_data *data)
 	p6 = (t_vector3){pos.x - size / 2, pos.y + size / 2, pos.z + size};
 	p7 = (t_vector3){pos.x + size / 2, pos.y + size / 2, pos.z + size};
 
-	r0 = project_perspective(p0, camera);
-	r1 = project_perspective(p1, camera);
-	r2 = project_perspective(p2, camera);
-	r3 = project_perspective(p3, camera);
+	if (camera.projection == PERSPECTIVE)
+	{
+		r0 = project_perspective(p0, camera);
+		r1 = project_perspective(p1, camera);
+		r2 = project_perspective(p2, camera);
+		r3 = project_perspective(p3, camera);
 
-	r4 = project_perspective(p4, camera);
-	r5 = project_perspective(p5, camera);
-	r6 = project_perspective(p6, camera);
-	r7 = project_perspective(p7, camera);
+		r4 = project_perspective(p4, camera);
+		r5 = project_perspective(p5, camera);
+		r6 = project_perspective(p6, camera);
+		r7 = project_perspective(p7, camera);
+	}
+	else
+	{
+		r0 = project_orthographic(p0, camera);
+		r1 = project_orthographic(p1, camera);
+		r2 = project_orthographic(p2, camera);
+		r3 = project_orthographic(p3, camera);
 
-	printf("r0.x: %d, r0.y: %d\n", r0.x, r0.y);
-	printf("r1.x: %d, r1.y: %d\n", r1.x, r1.y);
-	printf("r2.x: %d, r2.y: %d\n", r2.x, r2.y);
-	printf("r3.x: %d, r3.y: %d\n", r3.x, r3.y);
-	
-	printf("r4.x: %d, r4.y: %d\n", r4.x, r4.y);
-	printf("r5.x: %d, r5.y: %d\n", r5.x, r5.y);
-	printf("r6.x: %d, r6.y: %d\n", r6.x, r6.y);
-	printf("r7.x: %d, r7.y: %d\n", r7.x, r7.y);
+		r4 = project_orthographic(p4, camera);
+		r5 = project_orthographic(p5, camera);
+		r6 = project_orthographic(p6, camera);
+		r7 = project_orthographic(p7, camera);
+	}
 
 	bresenhamLine(r0, r1, data);
 	bresenhamLine(r1, r3, data);
