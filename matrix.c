@@ -1,12 +1,31 @@
 #include "fdf.h"
 
+/*
+	Frees a 3x3 matrix.
+*/
+void	cleanup_matrix(float **matrix)
+{
+	int	i;
+
+	i = 0;
+	while (i < 3)
+	{
+		free(matrix[i]);
+		i++;
+	}
+	free(matrix);
+}
+
+/*
+	Allocates memory for a 3x3 matrix of floats.
+*/
 float	**init_matrix()
 {
 	float	**m;
 	int		i;
 	int		j;
 
-	m = malloc(3 * sizeof(*m));
+	m = ft_calloc(3 * sizeof(*m));
 	if (!m)
 		return (0);
 	i = 0;
@@ -15,13 +34,7 @@ float	**init_matrix()
 		m[i] = malloc(3 * sizeof(float));
 		if (!m[i])
 		{
-			j = 0;
-			while (j < i)
-			{
-				free(m[j]);
-				j++;
-			}
-			free(m);
+			cleanup_matrix(m);
 			return (0);
 		}
 		i++;
@@ -29,6 +42,10 @@ float	**init_matrix()
 	return (m);
 }
 
+/*
+	Multiplies a matrix and a vector3.
+	The result is a vector3.
+*/
 t_vector3	do_mult(float **matrix, t_vector3 a)
 {
 	t_vector3	res;
