@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:41:47 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/16 16:32:09 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/18 10:31:29 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 # define FDF_H
 
 # include "mlx.h"
+# include "libft.h"
 # include <math.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+
+/* title of the window */
+#define TITLE "fdf"
 
 /* some colors */
 # define WHITE 0x00FFFFFF
@@ -32,6 +36,10 @@
 /* projection types */
 #define ORTHOGRAPHIC 0
 #define PERSPECTIVE 1
+
+/* isometric angles in radians */
+#define DEFAULT_ALPHA 0.610865238
+#define DEFAULT_BETA 0.785398
 
 /* boilerplate stuff for images */
 typedef struct	s_img_data
@@ -100,8 +108,8 @@ void	bresenhamLine(t_vector2 p0, t_vector2 p1, t_img_data *data);
 /* projection */
 t_vector2	project_perspective(t_vector3 object, t_camera camera);
 t_vector2	project_orthographic(t_vector3 object, t_camera camera);
-void	compute_alpha_matrix(float alpha, float **m);
-void	compute_beta_matrix(float beta, float **m);
+void		compute_alpha_matrix(float alpha, float **m);
+void		compute_beta_matrix(float beta, float **m);
 
 /* cube drawing */
 void	drawCube(t_vector3 pos, int size, t_camera camera, t_img_data *data);
@@ -110,13 +118,19 @@ void	drawCube(t_vector3 pos, int size, t_camera camera, t_img_data *data);
 int 	abs(int x);
 
 /* event handlers */
-int	handle_close(void *param);
-int handle_keydown(int code, void *param);
+int		handle_close(void *param);
+int		handle_keydown(int code, void *param);
 
+/* camera */
+void	init_camera(t_camera *camera);
+void	cleanup_camera(t_camera *camera);
+
+/* render.c */
 void	render(void	*mlx, void *window, t_cube *cube, t_camera *camera);
 
 /* matrix utils */
-float		**init_matrix();
-t_vector3	do_mult(float **matrix, t_vector3 a);
+void		cleanup_matrix(float **matrix);
+float		**init_matrix(void);
+t_vector3	mult(float **matrix, t_vector3 a);
 
 #endif

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   matrix.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/18 10:23:45 by skoulen           #+#    #+#             */
+/*   Updated: 2022/12/18 10:24:37 by skoulen          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 /*
@@ -19,13 +31,12 @@ void	cleanup_matrix(float **matrix)
 /*
 	Allocates memory for a 3x3 matrix of floats.
 */
-float	**init_matrix()
+float	**init_matrix(void)
 {
 	float	**m;
 	int		i;
-	int		j;
 
-	m = ft_calloc(3 * sizeof(*m));
+	m = ft_calloc(3, sizeof(*m));
 	if (!m)
 		return (0);
 	i = 0;
@@ -46,7 +57,7 @@ float	**init_matrix()
 	Multiplies a matrix and a vector3.
 	The result is a vector3.
 */
-t_vector3	do_mult(float **matrix, t_vector3 a)
+t_vector3	mult(float **matrix, t_vector3 a)
 {
 	t_vector3	res;
 

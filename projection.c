@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 13:07:19 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/16 16:30:11 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/18 10:24:11 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static t_vector3	rotate(t_vector3 obj, t_camera camera)
 
 	a = camera.alpha;
 	b = camera.beta;
-	return (do_mult(a, do_mult(b, obj))); 
+	return (mult(a, mult(b, obj))); 
 }
 
 t_vector2	project_orthographic(t_vector3 object, t_camera camera)
