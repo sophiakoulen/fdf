@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:41:47 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/18 17:00:59 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/18 17:25:09 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ int		**parse_map(char *filename, int *rows, int *cols);
 /* parsing utils */
 void	cleanup_map(int **map);
 void	cleanup_strs(char **strs);
+int		get_line_count(int fd);
 
 /* do rendering */
 void	do_rendering(t_map *map);

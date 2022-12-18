@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 11:54:08 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/18 14:52:02 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/18 17:09:36 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,16 @@
 #define RIGHT 123
 
 
-int	handle_close(void *param)
+static void	clean_exit(t_param *param)
 {
 	(void)param;
+	//cleanup_map(param->map->map);
 	exit(EXIT_SUCCESS);
+}
+
+int	handle_close(void *param)
+{
+	clean_exit(param);
 	return (0);
 }
 
@@ -35,7 +41,7 @@ int handle_keydown(int code, void *param)
 	printf("%d\n", code);
 	if (code == ESC)
 	{
-		exit(EXIT_SUCCESS);
+		clean_exit(param);
 	}
 	else if (code == 35) //P
 	{

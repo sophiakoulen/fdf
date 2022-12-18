@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 13:55:55 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/18 13:56:07 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/18 17:24:55 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,20 @@ void	cleanup_strs(char **strs)
 		i++;
 	}
 	free(strs);
+}
+
+int	get_line_count(int fd)
+{
+	char	*line;
+	int		i;
+
+	i = 0;
+	line = get_next_line(fd);
+	while (line)
+	{
+		free(line);
+		line = get_next_line(fd);
+		i++;
+	}
+	return (i);
 }
