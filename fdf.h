@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:41:47 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/18 13:26:45 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/18 13:57:01 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,11 @@ typedef struct s_param
 }	t_param;
 
 /* parsing */
-int	**parse_map(char *filename, int *rows, int *cols);
+int		**parse_map(char *filename, int *rows, int *cols);
+
+/* parsing utils */
+void	cleanup_map(int **map);
+void	cleanup_strs(char **strs);
 
 /* do rendering */
 void	do_rendering(void);

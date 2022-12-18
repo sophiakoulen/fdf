@@ -6,7 +6,7 @@
 #    By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/15 10:42:00 by skoulen           #+#    #+#              #
-#    Updated: 2022/12/18 13:42:31 by skoulen          ###   ########.fr        #
+#    Updated: 2022/12/18 13:55:45 by skoulen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ matrix.c \
 camera.c \
 do_rendering.c
 
-PARSING = parsing.c
+PARSING = parsing.c parsing_utils.c
 
 SRCS = main.c $(addprefix rendering/, $(RENDERING)) $(addprefix parsing/, $(PARSING))
 
