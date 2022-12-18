@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:41:47 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/18 11:08:16 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/18 13:26:45 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 
 # include "mlx.h"
 # include "libft.h"
+# include "get_next_line.h"
+
 # include <math.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <fcntl.h>
 
 /* title of the window */
 #define TITLE "fdf"
@@ -98,6 +101,11 @@ typedef struct s_param
 	t_cube		*cube;
 }	t_param;
 
+/* parsing */
+int	**parse_map(char *filename, int *rows, int *cols);
+
+/* do rendering */
+void	do_rendering(void);
 
 /* puting a pixel to an image */
 void	pixel_put(t_img_data *data, int x, int y, int color);

@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 11:20:47 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/18 12:45:23 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/18 13:26:30 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,19 @@ void	cleanup_map(int **map)
 		i++;
 	}
 	free(map);
+}
+
+void	cleanup_strs(char **strs)
+{
+	int	i;
+
+	i = 0;
+	while (strs[i])
+	{
+		free(strs[i]);
+		i++;
+	}
+	free(strs);
 }
 
 int	*get_ints(char *line)
@@ -85,26 +98,25 @@ int	get_width(int fd)
 	return (i);
 }
 
-int	**parse_map(char *filename, int *width, int *height)
+int	**parse_map(char *filename, int *rows, int *cols)
 {
 	int		**map;
 	int		fd;
 	char	*line;
 	int		i;
 
-	fd = open(filename);
+	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{
 		return (0);
 	}
-	*height = get_height(fd);
-	*width = get_width(fd);
-	map = ft_calloc(height * sizeof(*map));
+	*rows = get_height(fd);
+	*cols = get_width(fd);
+	map = ft_calloc(*rows, sizeof(*map));
 	i = 0;
 	while (1)
 	{
 		line = get_next_line(fd);
-		map[i] = line;
 		if (line)
 		{
 			map[i] = get_ints(line);
