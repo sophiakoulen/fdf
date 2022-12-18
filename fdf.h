@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:41:47 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/18 15:46:08 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/18 17:00:59 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ void	plot_point(t_vector3 point, int color, t_camera *camera, t_img_data *img);
 void	plot_line(t_vector3 p0, t_vector3 p1, int color, t_camera *camera, t_img_data *img);
 
 /* line drawing */
-void	bresenhamLine(t_vector2 p0, t_vector2 p1, t_img_data *data);
+void	bresenham_line(t_vector2 p0, t_vector2 p1, t_img_data *data);
 
 /* projection */
 t_vector2	project(t_vector3 point, t_camera *camera);
