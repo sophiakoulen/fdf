@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 11:20:47 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/18 11:36:07 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/18 12:45:23 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,38 @@ int	*get_ints(char *line)
 	return (ints);
 }
 
-int	**parse_map(char *filename)
+int	get_height(int fd)
+{
+	int	i;
+
+	i = 0;
+	while (get_next_line(fd))
+		i++;
+	return (i);
+}
+
+int	get_width(int fd)
+{
+	char	*line;
+	char	**tab;
+	int		i;
+
+	line = get_next_line(fd);
+	if (!line)
+		return (0);
+	tab = ft_split(line, ' ');
+	if (!tab)
+		return (0);
+	i = 0;
+	while (tab[i])
+		i++;
+	cleanup_strs(tab);
+	while (get_next_line(fd))
+		;
+	return (i);
+}
+
+int	**parse_map(char *filename, int *width, int *height)
 {
 	int		**map;
 	int		fd;
@@ -66,6 +97,9 @@ int	**parse_map(char *filename)
 	{
 		return (0);
 	}
+	*height = get_height(fd);
+	*width = get_width(fd);
+	map = ft_calloc(height * sizeof(*map));
 	i = 0;
 	while (1)
 	{
@@ -76,7 +110,8 @@ int	**parse_map(char *filename)
 			map[i] = get_ints(line);
 			if (!map[i])
 			{
-
+				cleanup_map(map);
+				return (0);
 			}
 		}
 		if (!line)
