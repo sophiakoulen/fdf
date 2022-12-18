@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 11:20:47 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/18 13:26:30 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/18 13:52:49 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,34 +67,52 @@ int	*get_ints(char *line)
 	return (ints);
 }
 
-int	get_height(int fd)
+/*
+	Returns -1 in case of error (file can't open)
+*/
+int	get_height(char *filename)
 {
+	int	fd;
 	int	i;
 
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		return (-1);
 	i = 0;
 	while (get_next_line(fd))
 		i++;
+	close(fd);
 	return (i);
 }
 
-int	get_width(int fd)
+/*
+	Returns -1 in case of error (file can't open or
+	malloc failure)
+	0 if line is empty
+*/
+int	get_width(char *filename)
 {
+	int		fd;
 	char	*line;
 	char	**tab;
 	int		i;
 
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		return (-1);
 	line = get_next_line(fd);
 	if (!line)
 		return (0);
 	tab = ft_split(line, ' ');
 	if (!tab)
-		return (0);
+		return (-1);
 	i = 0;
 	while (tab[i])
 		i++;
 	cleanup_strs(tab);
 	while (get_next_line(fd))
 		;
+	close(fd);
 	return (i);
 }
 
@@ -107,11 +125,9 @@ int	**parse_map(char *filename, int *rows, int *cols)
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-	{
 		return (0);
-	}
-	*rows = get_height(fd);
-	*cols = get_width(fd);
+	*rows = get_height(filename);
+	*cols = get_width(filename);
 	map = ft_calloc(*rows, sizeof(*map));
 	i = 0;
 	while (1)
