@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:41:47 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/18 13:57:01 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/18 15:24:35 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 # define GREEN 0x0000FF00
 
 /* window width and height */
-#define WIDTH 300
-#define HEIGHT 300
+#define WIDTH 800
+#define HEIGHT 450
 
 /* projection types */
 #define ORTHOGRAPHIC 0
@@ -93,13 +93,29 @@ typedef struct	s_cube
 	int			size;
 }	t_cube;
 
+typedef struct s_map
+{
+	int	**map;
+	int rows;
+	int cols;
+}	t_map;
+
 typedef struct s_param
 {
 	void		*mlx;
 	void		*window;
 	t_camera	*camera;
 	t_cube		*cube;
+	t_map		*map;
 }	t_param;
+
+typedef	struct s_square
+{
+	t_vector3	top_left;
+	t_vector3	top_right;
+	t_vector3	bottom_left;
+	t_vector3	bottom_right;
+}	t_square;
 
 /* parsing */
 int		**parse_map(char *filename, int *rows, int *cols);
@@ -109,7 +125,7 @@ void	cleanup_map(int **map);
 void	cleanup_strs(char **strs);
 
 /* do rendering */
-void	do_rendering(void);
+void	do_rendering(t_map *map);
 
 /* puting a pixel to an image */
 void	pixel_put(t_img_data *data, int x, int y, int color);
@@ -139,7 +155,7 @@ void	init_camera(t_camera *camera);
 void	cleanup_camera(t_camera *camera);
 
 /* render.c */
-void	render(void	*mlx, void *window, t_cube *cube, t_camera *camera);
+void	render(t_param *param);
 
 /* matrix utils */
 void		cleanup_matrix(float **matrix);

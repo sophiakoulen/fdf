@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 11:54:08 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/16 14:17:45 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/18 14:52:02 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,27 +40,27 @@ int handle_keydown(int code, void *param)
 	else if (code == 35) //P
 	{
 		args->camera->projection = !args->camera->projection;
-		render(args->mlx, args->window, args->cube, args->camera);		
+		render(param);	
 	}
 	else if (code == UP)
 	{
 		args->camera->position.y += 5;
-		render(args->mlx, args->window, args->cube, args->camera);
+		render(param);
 	}
 	else if (code == DOWN)
 	{
 		args->camera->position.y -= 5;
-		render(args->mlx, args->window, args->cube, args->camera);
+		render(param);
 	}
 	else if (code == LEFT)
 	{
 		args->camera->position.x += 5;
-		render(args->mlx, args->window, args->cube, args->camera);
+		render(param);
 	}
 	else if (code == RIGHT)
 	{
 		args->camera->position.x -= 5;
-		render(args->mlx, args->window, args->cube, args->camera);
+		render(param);
 	}
 	return (0);
 }
