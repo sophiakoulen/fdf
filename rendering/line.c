@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:43:43 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/16 11:48:16 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/18 16:00:35 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,36 @@
 
 static void	plotLineLow(t_vector2 p0, t_vector2 p1, t_img_data *data)
 {
-	int	dx = p1.x - p0.x;
-	int	dy = p1.y - p0.y;
-	int yi = 1;
+	int	dx;
+	int	dy;
+	int	yi;
+	int	D;
+	int	y;
+	int	x;
+
+	dx = p1.x - p0.x;
+	dy = p1.y - p0.y;
+	yi = 1;
 	if (dy < 0)
 	{
 		yi = -1;
 		dy = -dy;
 	}
-	int D = (2 * dy) - dx;
-	int y = p0.y;
-
-	for (int x = p0.x; x < p1.x; x++)
+	
+	D = (2 * dy) - dx;
+	y = p0.y;
+	x = p0.x;
+	while (x < p1.x)
 	{
 		pixel_put(data, x, y, WHITE);
 		if (D > 0)
 		{
 			y += yi;
-			D = D + (2 * (dy - dx));
+			D += (2 * (dy - dx));
 		}
 		else
-			D = D + (2 * dy);
+			D += (2 * dy);
+		x++;
 	}
 }
 

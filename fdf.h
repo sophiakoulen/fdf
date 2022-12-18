@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:41:47 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/18 15:24:35 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/18 15:46:08 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,9 @@ void	cleanup_strs(char **strs);
 
 /* do rendering */
 void	do_rendering(t_map *map);
+
+/* draw terrain */
+void	draw_terrain(t_map *map, t_camera *camera, t_img_data *img);
 
 /* puting a pixel to an image */
 void	pixel_put(t_img_data *data, int x, int y, int color);

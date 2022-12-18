@@ -6,7 +6,7 @@
 #    By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/15 10:42:00 by skoulen           #+#    #+#              #
-#    Updated: 2022/12/18 13:55:45 by skoulen          ###   ########.fr        #
+#    Updated: 2022/12/18 15:47:37 by skoulen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ event_handlers.c \
 render.c \
 matrix.c \
 camera.c \
-do_rendering.c
+do_rendering.c \
+draw_terrain.c
 
 PARSING = parsing.c parsing_utils.c
 

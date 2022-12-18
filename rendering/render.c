@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 12:08:50 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/18 15:18:47 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/18 15:47:15 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	render(t_param *param)
 {
-	t_map		*map;
 	t_img_data	img;
 
 	img.img = mlx_new_image(param->mlx, WIDTH, HEIGHT);
@@ -22,7 +21,7 @@ void	render(t_param *param)
 
 	//drawCube(cube->position, cube->size, camera, &img);
 
-	map = param->map;
+	draw_terrain(param->map, param->camera, &img);
 
 	mlx_put_image_to_window(param->mlx, param->window, img.img, 0, 0);
 }

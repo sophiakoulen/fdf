@@ -6,39 +6,58 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 15:18:18 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/18 15:28:08 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/18 15:50:51 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	draw_terrain(t_map *map, t_camera *camera, t_img_data *img)
+void	draw_row(t_map *map, int row, t_camera *camera, t_img_data *img)
 {
-	t_square	s;
 	int			i;
-	int			j;
+	t_vector3	p0;
+	t_vector3	p1;
 
+	i = 0;
+	while (i < map->cols - 1)
+	{
+		p0 = (t_vector3){i * 10, map->map[row][i] * 10, row * 10};
+		p1 = (t_vector3){(i + 1) * 10, map->map[row][i + 1] * 10, row * 10};
+		plot_line(p0, p1, WHITE, camera, img);
+		i++;
+	}
+}
+
+void	draw_col(t_map *map, int col, t_camera *camera, t_img_data *img)
+{
+	int			i;
+	t_vector3	p0;
+	t_vector3	p1;
+
+	i = 0;
 	while (i < map->rows - 1)
 	{
-		while (j < map->cols - 1)
-		{
+		p0 = (t_vector3){col * 10, map->map[i][col] * 10, i * 10};
+		p1 = (t_vector3){col * 10, map->map[i + 1][col] * 10, (i + 1) * 10};
+		plot_line(p0, p1, WHITE, camera, img);
+		i++;
+	}
+}
 
-			s.top_left = (t_vector3){j * 10, map->map[i][j] * 10, i * 10};
-			s.top_right = (t_vector3){(j + 1) * 10, map->map[i][j + 1] * 2, i * 10};
-			s.bottom_left = (t_vector3){j * 10, map->map[i + 1][j] * 2, (i + 1) * 10};
-			s.bottom_right = (t_vector3){(j + 1) * 10, map->map[i + 1][j + 1] * 2, (i + 1) * 10};
-			plot_line(s.top_left, s.top_right, WHITE, camera, img);
-			plot_line(s.top_left, s.bottom_left, WHITE, camera, img);
-			if (i == map->rows - 2)
-			{
-				plot_line(s.bottom_left, s.bottom_right, WHITE, camera, img);
-			}
-			if (j == map->cols - 2)
-			{
-				plot_line(s.top_right, s.bottom_right, WHITE, camera, img);
-			}
-			j++;
-		}
+void	draw_terrain(t_map *map, t_camera *camera, t_img_data *img)
+{
+	int			i;
+
+	i = 0;
+	while (i < map->rows)
+	{
+		draw_row(map, i, camera, img);
+		i++;
+	}
+	i = 0;
+	while (i < map->cols)
+	{
+		draw_col(map, i, camera, img);
 		i++;
 	}
 }
