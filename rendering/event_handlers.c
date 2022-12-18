@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 11:54:08 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/18 17:09:36 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/18 17:54:30 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,9 @@
 #define LEFT 124
 #define RIGHT 123
 
-
 static void	clean_exit(t_param *param)
 {
 	(void)param;
-	//cleanup_map(param->map->map);
 	exit(EXIT_SUCCESS);
 }
 
@@ -33,42 +31,44 @@ int	handle_close(void *param)
 	return (0);
 }
 
-int handle_keydown(int code, void *param)
+static void	key_arrow_control(int code, t_param *param)
+{
+	if (code == UP)
+	{
+		param->camera->position.y += 5;
+		render(param);
+	}
+	if (code == DOWN)
+	{
+		param->camera->position.y -= 5;
+		render(param);
+	}
+	if (code == LEFT)
+	{
+		param->camera->position.x += 5;
+		render(param);
+	}
+	if (code == RIGHT)
+	{
+		param->camera->position.x -= 5;
+		render(param);
+	}
+}
+
+int	handle_keydown(int code, void *param)
 {
 	t_param	*args;
 
 	args = param;
-	printf("%d\n", code);
 	if (code == ESC)
 	{
 		clean_exit(param);
 	}
-	else if (code == 35) //P
+	if (code == 35)
 	{
 		args->camera->projection = !args->camera->projection;
-		render(param);	
-	}
-	else if (code == UP)
-	{
-		args->camera->position.y += 5;
 		render(param);
 	}
-	else if (code == DOWN)
-	{
-		args->camera->position.y -= 5;
-		render(param);
-	}
-	else if (code == LEFT)
-	{
-		args->camera->position.x += 5;
-		render(param);
-	}
-	else if (code == RIGHT)
-	{
-		args->camera->position.x -= 5;
-		render(param);
-	}
+	key_arrow_control(code, param);
 	return (0);
 }
-
-

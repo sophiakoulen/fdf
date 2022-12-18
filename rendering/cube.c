@@ -6,13 +6,13 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:50:59 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/18 11:11:39 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/18 17:32:04 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	drawCube(t_vector3 pos, int size, t_camera *camera, t_img_data *data)
+void	draw_cube(t_vector3 pos, int size, t_camera *camera, t_img_data *data)
 {
 	t_vector3 p0, p1, p2, p3, p4, p5, p6, p7;
 

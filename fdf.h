@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:41:47 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/18 17:25:09 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/18 18:05:31 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ typedef struct	s_img_data
 {
 	void	*img;
 	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
+	int		bpp;
+	int		ll;
 	int		endian;
 }	t_img_data;
 
@@ -109,14 +109,6 @@ typedef struct s_param
 	t_map		*map;
 }	t_param;
 
-typedef	struct s_square
-{
-	t_vector3	top_left;
-	t_vector3	top_right;
-	t_vector3	bottom_left;
-	t_vector3	bottom_right;
-}	t_square;
-
 /* parsing */
 int		**parse_map(char *filename, int *rows, int *cols);
 
@@ -133,8 +125,10 @@ void	draw_terrain(t_map *map, t_camera *camera, t_img_data *img);
 
 /* puting a pixel to an image */
 void	pixel_put(t_img_data *data, int x, int y, int color);
+
+/* plot */
 void	plot_point(t_vector3 point, int color, t_camera *camera, t_img_data *img);
-void	plot_line(t_vector3 p0, t_vector3 p1, int color, t_camera *camera, t_img_data *img);
+void	plot_line(t_vector3 p0, t_vector3 p1, t_camera *camera, t_img_data *img);
 
 /* line drawing */
 void	bresenham_line(t_vector2 p0, t_vector2 p1, t_img_data *data);
@@ -145,7 +139,7 @@ void		compute_alpha_matrix(float alpha, float **m);
 void		compute_beta_matrix(float beta, float **m);
 
 /* cube drawing */
-void	drawCube(t_vector3 pos, int size, t_camera *camera, t_img_data *data);
+void	draw_cube(t_vector3 pos, int size, t_camera *camera, t_img_data *data);
 
 /* utils */
 int 	abs(int x);
