@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:41:58 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/18 10:29:34 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/18 10:48:51 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main()
 	param.camera = &camera;
 	init_camera(param.camera);
 
-	t_cube cube = {.position = (t_vector3){0, 0, 0}, .size =  42};
+	t_cube cube = {.position = (t_vector3){0, 0, 0}, .size =  80};
 
 	param.cube = &cube;
 

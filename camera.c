@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 10:27:51 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/18 10:28:36 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/18 10:50:44 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	init_camera(t_camera *camera)
 {
 	camera->zoom = 150;
 	camera->projection = ORTHOGRAPHIC;
-	camera->position = (t_vector3){0, 0, -25};
+	camera->position = (t_vector3){0, 25, -150};
 	camera->alpha = init_matrix();
 	camera->beta = init_matrix();
 	if (!camera->alpha || !camera->beta)

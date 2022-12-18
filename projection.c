@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 13:07:19 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/18 10:24:11 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/18 10:59:13 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ static t_vector3	relative_position(t_vector3 obj, t_vector3 cam)
 	return (rel);
 }
 
-t_vector2	project_perspective(t_vector3 object, t_camera camera)
+static t_vector2	project_perspective(t_vector3 object, t_camera *camera)
 {
 	t_vector2	res;
 	t_vector3	pos;
 
-	pos = relative_position(object, camera.position);
-	res.x = (float)((float)camera.zoom / (float)pos.z * (float)pos.x);
-	res.y = (float)((float)camera.zoom / (float)pos.z * (float)pos.y);
+	pos = relative_position(object, camera->position);
+	res.x = (float)((float)camera->zoom / (float)pos.z * (float)pos.x);
+	res.y = (float)((float)camera->zoom / (float)pos.z * (float)pos.y);
 
 	//BEWARE OF FLOATING POINT EXCEPTION
 	
@@ -66,27 +66,31 @@ void	compute_beta_matrix(float beta, float **m)
 	m[2][2] = cos(beta);
 }
 
-#define SQRT_3 1.732050807568877
-#define SQRT_2 1.414213562373095
-#define SQRT_6 2.449489742783178
-
-static t_vector3	rotate(t_vector3 obj, t_camera camera)
+static t_vector3	rotate(t_vector3 obj, t_camera *camera)
 {
 	float	**a;
 	float	**b;
 
-	a = camera.alpha;
-	b = camera.beta;
+	a = camera->alpha;
+	b = camera->beta;
 	return (mult(a, mult(b, obj))); 
 }
 
-t_vector2	project_orthographic(t_vector3 object, t_camera camera)
+static t_vector2	project_orthographic(t_vector3 object, t_camera *camera)
 {
 	t_vector2	res;
 	t_vector3	pos;
 
 	pos = rotate(object, camera);
-	res.x = pos.x - camera.position.x;
-	res.y = pos.z - camera.position.y;
+	res.x = pos.x - camera->position.x;
+	res.y = pos.z - camera->position.y;
 	return (res);
+}
+
+t_vector2	project(t_vector3 point, t_camera *camera)
+{
+	if (camera->projection == PERSPECTIVE)
+		return (project_perspective(point, camera));
+	else
+		return (project_orthographic(point, camera));
 }
