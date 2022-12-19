@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 10:08:31 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/19 11:50:30 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/19 13:31:37 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,16 @@ int	rgb(int r, int g, int b)
 	return (clr);
 }
 
-int	compute_color(t_vector3 p)
+int	compute_color(t_vector3 p, int max)
 {
 	float	percent;
+	int		r;
+	int		g;
+	int		b;
 
-	percent = (float)p.y / (float)100;
-	return (rgb(255, (1 - 2 * percent) * 255, (1 - percent) * 255));
+	percent = (float)p.y / (float)max;
+	r = 255;
+	g = 255;
+	b = 255;
+	return (rgb(r, (1 - percent) * g, b));
 }

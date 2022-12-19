@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:41:47 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/19 11:47:12 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/19 13:45:20 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ typedef struct s_param
 	t_camera	*camera;
 	t_cube		*cube;
 	t_map		*map;
+	int			max;
 }	t_param;
 
 /* parsing */
@@ -121,19 +122,21 @@ int		get_line_count(int fd);
 void	do_rendering(t_map *map);
 
 /* draw terrain */
-void	draw_terrain(t_map *map, t_camera *camera, t_img_data *img);
+void	draw_terrain(t_map *map, t_param *param, t_img_data *img);
 
 /* puting a pixel to an image */
 void	pixel_put(t_img_data *data, int x, int y, int color);
+int		is_put(t_img_data *img, int x, int y,  int color);
 
 /* plot */
-void	plot_point(t_vector3 point, t_camera *camera, t_img_data *img);
-void	plot_line(t_vector3 p0, t_vector3 p1, t_camera *camera, t_img_data *img);
+void	plot_point(t_vector3 p, t_param *param, t_img_data *img);
+int		is_drawn(t_vector3 p, t_param *param, t_img_data *img);
+void	plot_line(t_vector3 p0, t_vector3 p1, t_param *param, t_img_data *img);
 
 /* line drawing */
 void	bresenham_line(t_vector2 p0, t_vector2 p1, int color, t_img_data *data);
 
-void		draw_line(t_vector3 p0, t_vector3 p1, t_camera *cam, t_img_data *img);
+void	draw_line(t_vector3 p0, t_vector3 p1, t_param *param, t_img_data *img);
 t_vector3	midpoint(t_vector3 p0, t_vector3 p1);
 
 /* projection */
@@ -164,6 +167,6 @@ float		**init_matrix(void);
 t_vector3	mult(float **matrix, t_vector3 a);
 
 /* color */
-int	compute_color(t_vector3 p);
+int	compute_color(t_vector3 p, int max);
 
 #endif
