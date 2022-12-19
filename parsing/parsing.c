@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 11:20:47 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/18 17:27:48 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/19 12:00:18 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ static int	get_cols(char *filename)
 	line = get_next_line(fd);
 	if (!line)
 		return (0);
-	free(line);
 	tab = ft_split(line, ' ');
+	free(line);
 	if (!tab)
 		return (-1);
 	i = 0;

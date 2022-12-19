@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:41:47 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/18 18:05:31 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/19 11:47:12 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,11 +127,14 @@ void	draw_terrain(t_map *map, t_camera *camera, t_img_data *img);
 void	pixel_put(t_img_data *data, int x, int y, int color);
 
 /* plot */
-void	plot_point(t_vector3 point, int color, t_camera *camera, t_img_data *img);
+void	plot_point(t_vector3 point, t_camera *camera, t_img_data *img);
 void	plot_line(t_vector3 p0, t_vector3 p1, t_camera *camera, t_img_data *img);
 
 /* line drawing */
-void	bresenham_line(t_vector2 p0, t_vector2 p1, t_img_data *data);
+void	bresenham_line(t_vector2 p0, t_vector2 p1, int color, t_img_data *data);
+
+void		draw_line(t_vector3 p0, t_vector3 p1, t_camera *cam, t_img_data *img);
+t_vector3	midpoint(t_vector3 p0, t_vector3 p1);
 
 /* projection */
 t_vector2	project(t_vector3 point, t_camera *camera);
@@ -159,5 +162,8 @@ void	render(t_param *param);
 void		cleanup_matrix(float **matrix);
 float		**init_matrix(void);
 t_vector3	mult(float **matrix, t_vector3 a);
+
+/* color */
+int	compute_color(t_vector3 p);
 
 #endif

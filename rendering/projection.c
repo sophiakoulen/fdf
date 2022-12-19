@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 13:07:19 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/18 10:59:13 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/19 11:40:56 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static t_vector2	project_orthographic(t_vector3 object, t_camera *camera)
 
 	pos = rotate(object, camera);
 	res.x = pos.x - camera->position.x;
-	res.y = pos.z - camera->position.y;
+	res.y = -pos.z - camera->position.y;
 	return (res);
 }
 

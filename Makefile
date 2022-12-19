@@ -6,7 +6,7 @@
 #    By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/15 10:42:00 by skoulen           #+#    #+#              #
-#    Updated: 2022/12/18 18:00:19 by skoulen          ###   ########.fr        #
+#    Updated: 2022/12/19 10:16:03 by skoulen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ MLX_MAC = -Imlx -L. -lmlx -framework OpenGL -framework AppKit
 CFLAGS += $(INCLUDE_PATHS) $(LIB_PATHS) $(LIBS) $(MLX_MAC)
 
 RENDERING = line.c \
-cube.c \
+line2.c \
 pixel_put.c \
 projection.c \
 utils.c \
@@ -36,7 +36,8 @@ matrix.c \
 camera.c \
 do_rendering.c \
 draw_terrain.c \
-plot.c
+plot.c \
+color.c
 
 PARSING = parsing.c parsing_utils.c
 
