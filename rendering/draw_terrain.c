@@ -6,11 +6,21 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 15:18:18 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/19 13:37:41 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/20 12:17:15 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+t_vector3	get_coordinate(t_map *map, int i, int j)
+{
+	t_vector3	res;
+
+	res.x = (j - map->cols/2) * 20;
+	res.y = map->map[i][j] * 10;
+	res.z = (i - map->rows/2) * 20;
+	return (res);
+}
 
 void	draw_row(t_map *map, int row, t_param *param, t_img_data *img)
 {
@@ -21,9 +31,9 @@ void	draw_row(t_map *map, int row, t_param *param, t_img_data *img)
 	i = 0;
 	while (i < map->cols - 1)
 	{
-		p0 = (t_vector3){i * 20, map->map[row][i] * 10, row * 20};
-		p1 = (t_vector3){(i + 1) * 20, map->map[row][i + 1] * 10, row * 20};
-		draw_line(p0, p1, param, img);
+		p0 = get_coordinate(map, row, i);
+		p1 = get_coordinate(map, row, i+1);
+		plot_line(p0, p1, param, img);
 		i++;
 	}
 }
@@ -37,9 +47,9 @@ void	draw_col(t_map *map, int col, t_param *param, t_img_data *img)
 	i = 0;
 	while (i < map->rows - 1)
 	{
-		p0 = (t_vector3){col * 20, map->map[i][col] * 10, i * 20};
-		p1 = (t_vector3){col * 20, map->map[i + 1][col] * 10, (i + 1) * 20};
-		draw_line(p0, p1, param, img);
+		p0 = get_coordinate(map, i, col);
+		p1 = get_coordinate(map, i + 1, col);
+		plot_line(p0, p1, param, img);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 17:59:43 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/19 13:45:10 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/20 12:53:39 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,9 @@ void	plot_line(t_vector3 p0, t_vector3 p1, t_param *param, t_img_data *img)
 {
 	t_vector2	r0;
 	t_vector2	r1;
-	t_vector3	mid;
 	int			color;
 
-	mid = midpoint(p0, p1);
-	color = compute_color(mid, param->max);
+	color = WHITE;
 
 	r0 = project(p0, param->camera);
 	r1 = project(p1, param->camera);

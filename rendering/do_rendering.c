@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 13:23:39 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/19 13:44:36 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/20 12:14:07 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	do_rendering(t_map *map)
 				param.max = map->map[i][j];
 		}
 	}
+	adjust_scale(&param);
 	render(&param);
 	mlx_hook(param.window, 17, 0, handle_close, 0);
 	mlx_hook(param.window, 2, 0, handle_keydown, &param);

@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 12:08:50 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/19 13:48:40 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/20 12:54:36 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,8 @@ void	render(t_param *param)
 	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.ll, &img.endian);
 	make_black(&img);
 	draw_terrain(param->map, param, &img);
+	pixel_put(&img, 0, 0, RED);
+	pixel_put(&img, -150, 0, RED);
+	pixel_put(&img, 150, 0, RED);
 	mlx_put_image_to_window(param->mlx, param->window, img.img, 0, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 13:07:19 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/19 11:40:56 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/20 13:20:09 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,12 @@ static t_vector2	project_perspective(t_vector3 object, t_camera *camera)
 	t_vector3	pos;
 
 	pos = relative_position(object, camera->position);
-	res.x = (float)((float)camera->zoom / (float)pos.z * (float)pos.x);
-	res.y = (float)((float)camera->zoom / (float)pos.z * (float)pos.y);
+	if (pos.z == 0)
+	{
+		return ((t_vector2){INT_MAX, INT_MAX});
+	}
+	res.x = (camera->zoom / (float)pos.z * pos.x);
+	res.y = (camera->zoom / (float)pos.z * pos.y);
 
 	//BEWARE OF FLOATING POINT EXCEPTION
 	
@@ -82,8 +86,8 @@ static t_vector2	project_orthographic(t_vector3 object, t_camera *camera)
 	t_vector3	pos;
 
 	pos = rotate(object, camera);
-	res.x = pos.x - camera->position.x;
-	res.y = -pos.z - camera->position.y;
+	res.x = pos.x * camera->scale - camera->position.x;
+	res.y = -pos.z * camera->scale - camera->position.y;
 	return (res);
 }
 

@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 11:54:08 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/18 17:54:30 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/20 13:15:14 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	handle_keydown(int code, void *param)
 	if (code == 35)
 	{
 		args->camera->projection = !args->camera->projection;
+		//adjust_scale(param);
 		render(param);
 	}
 	key_arrow_control(code, param);

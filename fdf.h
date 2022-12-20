@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:41:47 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/19 13:45:20 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/20 13:09:56 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <math.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 # include <stdio.h>
 # include <fcntl.h>
 
@@ -33,8 +34,8 @@
 # define GREEN 0x0000FF00
 
 /* window width and height */
-#define WIDTH 800
-#define HEIGHT 450
+#define WIDTH 1600
+#define HEIGHT 1000
 
 /* projection types */
 #define ORTHOGRAPHIC 0
@@ -69,9 +70,9 @@ typedef struct	s_vector2
 
 typedef struct	s_vector3
 {
-	int	x;
-	int	y;
-	int	z;
+	long long int	x;
+	long long int	y;
+	long long int	z;
 }	t_vector3;
 
 typedef float t_matrix3x1[3];
@@ -85,6 +86,7 @@ typedef struct s_camera
 	t_vector3	position;
 	float		**alpha; //alpha rotation matrix
 	float		**beta; //beta rotation matrix
+	float		scale;
 }	t_camera;
 
 typedef struct	s_cube
@@ -122,6 +124,7 @@ int		get_line_count(int fd);
 void	do_rendering(t_map *map);
 
 /* draw terrain */
+t_vector3	get_coordinate(t_map *map, int i, int j);
 void	draw_terrain(t_map *map, t_param *param, t_img_data *img);
 
 /* puting a pixel to an image */
@@ -135,9 +138,6 @@ void	plot_line(t_vector3 p0, t_vector3 p1, t_param *param, t_img_data *img);
 
 /* line drawing */
 void	bresenham_line(t_vector2 p0, t_vector2 p1, int color, t_img_data *data);
-
-void	draw_line(t_vector3 p0, t_vector3 p1, t_param *param, t_img_data *img);
-t_vector3	midpoint(t_vector3 p0, t_vector3 p1);
 
 /* projection */
 t_vector2	project(t_vector3 point, t_camera *camera);
@@ -157,6 +157,7 @@ int		handle_keydown(int code, void *param);
 /* camera */
 void	init_camera(t_camera *camera);
 void	cleanup_camera(t_camera *camera);
+void	adjust_scale(t_param *param);
 
 /* render.c */
 void	render(t_param *param);
