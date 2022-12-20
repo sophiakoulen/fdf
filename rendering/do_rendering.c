@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 13:23:39 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/20 15:34:05 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/20 15:51:05 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ void	init_param(t_param *param, t_map *map)
 	param->mlx = mlx_init();
 	param->window = mlx_new_window(param->mlx, WIDTH, HEIGHT, TITLE);
 	param->camera = new_camera();
+	param->map = map;
 	if (!param->camera)
 	{
-		//error handling!!
+		exit(EXIT_FAILURE);
 	}
-	param->map = map;
 	retrieve_max_height(param);
 	adjust_scale(param);
 }

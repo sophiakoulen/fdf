@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 10:27:51 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/20 15:33:34 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/20 16:21:16 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int		in_view(t_vector3 point, t_camera *cam)
 	t_vector2	r;
 
 	r = project(point, cam);
-	return (r.x >= -WIDTH/2 && r.x <= WIDTH/2 && r.y >= -HEIGHT/2 && r.y <= HEIGHT/2);
+	return (r.x >= -WIDTH/2 && r.x <= WIDTH/2
+			&& r.y >= -HEIGHT/2 && r.y <= HEIGHT/2);
 }
 
 void	adjust_scale(t_param *param)

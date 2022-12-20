@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 10:08:31 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/20 14:44:06 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/20 16:20:20 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@ int	color_lerp(int str_clr, int end_clr, float ratio)
 	return (rgb(r, g, b));
 }
 
-int	color_lerp_line(int str_clr, int end_clr, t_vector2 start, t_vector2 end, t_vector2 curr)
+int	color_lerp_line(t_line2d line, t_vector2 curr)
 {
 	float	ratio;
 
-	ratio = distance(start, curr) / distance(start, end);
-	return (color_lerp(str_clr, end_clr, ratio));
+	ratio = distance(line.p0, curr) / distance(line.p0, line.p1);
+	return (color_lerp(line.clr0, line.clr1, ratio));
 }

@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 17:59:43 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/20 14:40:25 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/20 16:15:03 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,13 @@ int		is_drawn(t_vector3 p, t_param *param, t_img_data *img)
 	return (is_put(img, point2d.x, point2d.y, color));
 }
 
-void	plot_line(t_vector3 p0, t_vector3 p1, int clr1, int clr2, t_param *param, t_img_data *img)
+void	plot_line(t_line3d line3, t_param *param, t_img_data *img)
 {
-	t_vector2	r0;
-	t_vector2	r1;
+	t_line2d	line2;
 
-	r0 = project(p0, param->camera);
-	r1 = project(p1, param->camera);
-	bresenham_line(r0, r1, clr1, clr2, img);
+	line2.p0 = project(line3.p0, param->camera);
+	line2.p1 = project(line3.p1, param->camera);
+	line2.clr0 = line3.clr0;
+	line2.clr1 = line3.clr1;
+	bresenham_line(line2, img);
 }

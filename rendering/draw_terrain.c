@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 15:18:18 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/20 15:05:33 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/20 16:18:25 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,20 @@ t_vector3	get_coordinate(t_map *map, int i, int j)
 void	draw_row(t_map *map, int row, t_param *param, t_img_data *img)
 {
 	int			i;
-	t_vector3	p0;
-	t_vector3	p1;
-	int 		y1;
-	int			y2;
-	int			clr1;
-	int			clr2;
+	float 		ratio0;
+	float		ratio1;
+	t_line3d	line;
 
 	i = 0;
 	while (i < map->cols - 1)
 	{
-		p0 = get_coordinate(map, row, i);
-		p1 = get_coordinate(map, row, i+1);
-		y1 = map->map[row][i];
-		y2 = map->map[row][i + 1];
-		clr1 = color_lerp(START_CLR, END_CLR, (float)y1 / (float)param->max);
-		clr2 = color_lerp(START_CLR, END_CLR, (float)y2 / (float)param->max);
-		plot_line(p0, p1, clr1, clr2, param, img);
+		line.p0 = get_coordinate(map, row, i);
+		line.p1 = get_coordinate(map, row, i+1);
+		ratio0 = (float)map->map[row][i] / param->max;
+		ratio1 = (float)map->map[row][i + 1] / param->max;
+		line.clr0 = color_lerp(START_CLR, END_CLR, ratio0);
+		line.clr1 = color_lerp(START_CLR, END_CLR, ratio1);
+		plot_line(line, param, img);
 		i++;
 	}
 }
@@ -49,24 +46,20 @@ void	draw_row(t_map *map, int row, t_param *param, t_img_data *img)
 void	draw_col(t_map *map, int col, t_param *param, t_img_data *img)
 {
 	int			i;
-	t_vector3	p0;
-	t_vector3	p1;
-	int			y1;
-	int			y2;
-	int			clr1;
-	int			clr2;
+	float		ratio0;
+	float		ratio1;
+	t_line3d	line;
 
 	i = 0;
 	while (i < map->rows - 1)
 	{
-		p0 = get_coordinate(map, i, col);
-		p1 = get_coordinate(map, i + 1, col);
-		y1 = map->map[i][col];
-		y2 = map->map[i + 1][col];
-		clr1 = color_lerp(START_CLR, END_CLR, (float)y1 / (float)param->max);
-		clr2 = color_lerp(START_CLR, END_CLR, (float)y2 / (float)param->max);
-		//printf("%X %X %f %f\n", clr1, clr2, (float)y1 / (float)param->max, (float)y2 / (float)param->max);
-		plot_line(p0, p1, clr1, clr2, param, img);
+		line.p0 = get_coordinate(map, i, col);
+		line.p1 = get_coordinate(map, i + 1, col);
+		ratio0 = (float)map->map[i][col] / param->max;
+		ratio1 = (float)map->map[i + 1][col] / param->max;
+		line.clr0 = color_lerp(START_CLR, END_CLR, ratio0);
+		line.clr1 = color_lerp(START_CLR, END_CLR, ratio1);
+		plot_line(line, param, img);
 		i++;
 	}
 }
