@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 12:08:50 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/20 15:07:20 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/20 16:41:09 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	make_black(t_img_data *img)
 	int	i;
 	int	j;
 
-	i = -WIDTH/2;
-	while (i < WIDTH/2)
+	i = -WIDTH / 2;
+	while (i < WIDTH / 2)
 	{
-		j = -HEIGHT/2;
-		while (j < HEIGHT/2)
+		j = -HEIGHT / 2;
+		while (j < HEIGHT / 2)
 		{
 			pixel_put(img, i, j, BACKGROUND);
 			j++;

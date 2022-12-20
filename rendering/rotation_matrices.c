@@ -1,25 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   rotation_matrices.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/15 10:41:58 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/20 17:08:09 by skoulen          ###   ########.fr       */
+/*   Created: 2022/12/20 16:39:21 by skoulen           #+#    #+#             */
+/*   Updated: 2022/12/20 16:40:03 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	main(int argc, char **argv)
+void	compute_alpha_matrix(float alpha, float **m)
 {
-	t_map	map;
+	m[0][0] = 1;
+	m[0][1] = 0;
+	m[0][2] = 0;
+	m[1][0] = 0;
+	m[1][1] = cos(alpha);
+	m[1][2] = sin(alpha);
+	m[2][0] = 0;
+	m[2][1] = -sin(alpha);
+	m[2][2] = cos(alpha);
+}
 
-	(void)argc;
-	map.map = parse_map(argv[1], &map.rows, &map.cols);
-	if (!map.map)
-		exit(EXIT_FAILURE);
-	do_rendering(&map);
-	return (0);
+void	compute_beta_matrix(float beta, float **m)
+{
+	m[0][0] = cos(beta);
+	m[0][1] = 0;
+	m[0][2] = -sin(beta);
+	m[1][0] = 0;
+	m[1][1] = 1;
+	m[1][2] = 0;
+	m[2][0] = sin(beta);
+	m[2][1] = 0;
+	m[2][2] = cos(beta);
 }

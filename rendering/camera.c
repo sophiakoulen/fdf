@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 10:27:51 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/20 16:21:16 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/20 16:30:09 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,29 +40,26 @@ void	cleanup_camera(t_camera *camera)
 	cleanup_matrix(camera->beta);
 }
 
-int		in_view(t_vector3 point, t_camera *cam)
+int	in_view(t_vector3 point, t_camera *cam)
 {
 	t_vector2	r;
 
 	r = project(point, cam);
-	return (r.x >= -WIDTH/2 && r.x <= WIDTH/2
-			&& r.y >= -HEIGHT/2 && r.y <= HEIGHT/2);
+	return (r.x >= -WIDTH / 2 && r.x <= WIDTH / 2
+		&& r.y >= -HEIGHT / 2 && r.y <= HEIGHT / 2);
 }
 
 void	adjust_scale(t_param *param)
 {
-	t_map	*map;
-	int		rows;
-	int		cols;
-	t_vector3	p0, p1, p2, p3;
+	t_vector3	p0;
+	t_vector3	p1;
+	t_vector3	p2;
+	t_vector3	p3;
 
-	map = param->map;
-	rows = param->map->rows;
-	cols = param->map->cols;
-	p0 = get_coordinate(map, 0, 0);
-	p1 = get_coordinate(map, 0, cols - 1);
-	p2 = get_coordinate(map, rows - 1, 0);
-	p3 = get_coordinate(map, rows - 1, cols - 1);
+	p0 = get_coordinate(param->map, 0, 0);
+	p1 = get_coordinate(param->map, 0, param->map->cols - 1);
+	p2 = get_coordinate(param->map, param->map->rows - 1, 0);
+	p3 = get_coordinate(param->map, param->map->rows - 1, param->map->cols - 1);
 	if (!in_view(p0, param->camera) || !in_view(p1, param->camera)
 		|| !in_view(p2, param->camera) || !in_view(p3, param->camera))
 	{

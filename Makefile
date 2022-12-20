@@ -6,7 +6,7 @@
 #    By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/15 10:42:00 by skoulen           #+#    #+#              #
-#    Updated: 2022/12/20 11:52:13 by skoulen          ###   ########.fr        #
+#    Updated: 2022/12/20 16:39:17 by skoulen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,9 @@ camera.c \
 do_rendering.c \
 draw_terrain.c \
 plot.c \
-color.c
+color.c \
+lerp.c \
+rotation_matrices.c
 
 PARSING = parsing.c parsing_utils.c
 

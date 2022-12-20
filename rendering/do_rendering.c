@@ -6,21 +6,23 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 13:23:39 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/20 15:51:05 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/20 17:01:37 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	retrieve_max_height(t_param *param)
+void	retrieve_limits(t_param *param)
 {
 	t_map	*map;
 	int		max;
+	int		min;
 	int		i;
 	int		j;
 
 	map = param->map;
 	max = map->map[0][0];
+	min = map->map[0][0];
 	i = 0;
 	while (i < map->rows)
 	{
@@ -29,11 +31,14 @@ void	retrieve_max_height(t_param *param)
 		{
 			if (map->map[i][j] > max)
 				max = map->map[i][j];
+			if (map->map[i][j] < min)
+				min = map->map[i][j];
 			j++;
 		}
 		i++;
 	}
 	param->max = max;
+	param->min = min;
 }
 
 void	register_events(t_param *param)
@@ -52,7 +57,8 @@ void	init_param(t_param *param, t_map *map)
 	{
 		exit(EXIT_FAILURE);
 	}
-	retrieve_max_height(param);
+	retrieve_limits(param);
+	printf("min: %d max: %d\n", param->min, param->max);
 	adjust_scale(param);
 }
 
@@ -61,10 +67,7 @@ void	do_rendering(t_map *map)
 	t_param		param;
 
 	init_param(&param, map);
-	
 	render(&param);
-
 	register_events(&param);
-
 	mlx_loop(param.mlx);
 }

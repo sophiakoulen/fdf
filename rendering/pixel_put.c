@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:42:49 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/19 13:20:55 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/20 16:36:44 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	pixel_put(t_img_data *img, int x, int y, int color)
 	}
 }
 
+/*
 int		is_put(t_img_data *img, int x, int y,  int color)
 {
 	char	*dst;
@@ -45,3 +46,4 @@ int		is_put(t_img_data *img, int x, int y,  int color)
 		return (*(unsigned int *)dst == (unsigned int)color);
 	}
 }
+*/

@@ -6,12 +6,13 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 17:59:43 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/20 16:15:03 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/20 16:34:21 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+/*
 void	plot_point(t_vector3 p, t_param *param, t_img_data *img)
 {
 	t_vector2	point2d;
@@ -21,16 +22,7 @@ void	plot_point(t_vector3 p, t_param *param, t_img_data *img)
 	point2d = project(p, param->camera);
 	pixel_put(img, point2d.x, point2d.y, color);
 }
-
-int		is_drawn(t_vector3 p, t_param *param, t_img_data *img)
-{
-	t_vector2	point2d;
-	int			color;
-
-	color = compute_color(p,param->max);
-	point2d = project(p, param->camera);
-	return (is_put(img, point2d.x, point2d.y, color));
-}
+*/
 
 void	plot_line(t_line3d line3, t_param *param, t_img_data *img)
 {
