@@ -6,13 +6,13 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:43:43 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/19 11:46:43 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/20 14:55:10 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	plot_line_low(t_vector2 p0, t_vector2 p1, int color, t_img_data *data)
+static void	plot_line_low(t_vector2 p0, t_vector2 p1, int clr1, int clr2, t_img_data *data)
 {
 	t_vector2	delta;
 	int			yi;
@@ -27,7 +27,7 @@ static void	plot_line_low(t_vector2 p0, t_vector2 p1, int color, t_img_data *dat
 	iter = p0;
 	while (iter.x < p1.x)
 	{
-		pixel_put(data, iter.x, iter.y, color);
+		pixel_put(data, iter.x, iter.y, color_lerp_line(clr1, clr2, p0, p1, iter));
 		if (error > 0)
 		{
 			iter.y += yi;
@@ -39,7 +39,7 @@ static void	plot_line_low(t_vector2 p0, t_vector2 p1, int color, t_img_data *dat
 	}
 }
 
-static void	plot_line_high(t_vector2 p0, t_vector2 p1, int color, t_img_data *data)
+static void	plot_line_high(t_vector2 p0, t_vector2 p1, int clr1, int clr2, t_img_data *data)
 {
 	t_vector2	delta;
 	int			xi;
@@ -54,7 +54,7 @@ static void	plot_line_high(t_vector2 p0, t_vector2 p1, int color, t_img_data *da
 	iter = p0;
 	while (iter.y < p1.y)
 	{
-		pixel_put(data, iter.x, iter.y, color);
+		pixel_put(data, iter.x, iter.y, color_lerp_line(clr1, clr2, p0, p1, iter));
 		if (error > 0)
 		{
 			iter.x += xi;
@@ -66,20 +66,20 @@ static void	plot_line_high(t_vector2 p0, t_vector2 p1, int color, t_img_data *da
 	}	
 }
 
-void	bresenham_line(t_vector2 p0, t_vector2 p1, int color, t_img_data *data)
+void	bresenham_line(t_vector2 p0, t_vector2 p1, int clr1, int clr2, t_img_data *data)
 {
 	if (abs(p1.y - p0.y) < abs(p1.x - p0.x))
 	{
 		if (p0.x > p1.x)
-			plot_line_low(p1, p0, color, data);
+			plot_line_low(p1, p0, clr2, clr1, data);
 		else
-			plot_line_low(p0, p1, color, data);
+			plot_line_low(p0, p1, clr1, clr2, data);
 	}
 	else
 	{
 		if (p0.y > p1.y)
-			plot_line_high(p1, p0, color, data);
+			plot_line_high(p1, p0, clr2, clr1, data);
 		else
-			plot_line_high(p0, p1, color, data);
+			plot_line_high(p0, p1, clr1, clr2, data);
 	}
 }

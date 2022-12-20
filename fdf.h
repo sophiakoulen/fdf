@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:41:47 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/20 13:09:56 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/20 15:29:45 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@
 /* title of the window */
 #define TITLE "fdf"
 
+# define START_CLR 0x00845ec2
+# define END_CLR 0x00f9f871
+# define BACKGROUND  0x00263238 
+
 /* some colors */
 # define WHITE 0x00FFFFFF
 # define RED 0x00FF0000
@@ -44,6 +48,10 @@
 /* isometric angles in radians */
 #define DEFAULT_ALPHA 0.610865238
 #define DEFAULT_BETA 0.785398
+
+/* events */
+#define EVENT_CLOSE 17
+#define EVENT_KEYDOWN 2
 
 /* boilerplate stuff for images */
 typedef struct	s_img_data
@@ -134,10 +142,10 @@ int		is_put(t_img_data *img, int x, int y,  int color);
 /* plot */
 void	plot_point(t_vector3 p, t_param *param, t_img_data *img);
 int		is_drawn(t_vector3 p, t_param *param, t_img_data *img);
-void	plot_line(t_vector3 p0, t_vector3 p1, t_param *param, t_img_data *img);
+void	plot_line(t_vector3 p0, t_vector3 p1, int clr1, int clr2, t_param *param, t_img_data *img);
 
 /* line drawing */
-void	bresenham_line(t_vector2 p0, t_vector2 p1, int color, t_img_data *data);
+void	bresenham_line(t_vector2 p0, t_vector2 p1, int clr1, int clr2, t_img_data *data);
 
 /* projection */
 t_vector2	project(t_vector3 point, t_camera *camera);
@@ -155,9 +163,9 @@ int		handle_close(void *param);
 int		handle_keydown(int code, void *param);
 
 /* camera */
-void	init_camera(t_camera *camera);
-void	cleanup_camera(t_camera *camera);
-void	adjust_scale(t_param *param);
+t_camera	*new_camera(void);
+void		cleanup_camera(t_camera *camera);
+void		adjust_scale(t_param *param);
 
 /* render.c */
 void	render(t_param *param);
@@ -169,5 +177,7 @@ t_vector3	mult(float **matrix, t_vector3 a);
 
 /* color */
 int	compute_color(t_vector3 p, int max);
+int	color_lerp(int str_clr, int end_clr, float ratio);
+int	color_lerp_line(int str_clr, int end_clr, t_vector2 start, t_vector2 end, t_vector2 curr);
 
 #endif

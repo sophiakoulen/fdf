@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 13:07:19 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/20 13:20:09 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/20 14:11:09 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,6 @@ static t_vector2	project_perspective(t_vector3 object, t_camera *camera)
 	}
 	res.x = (camera->zoom / (float)pos.z * pos.x);
 	res.y = (camera->zoom / (float)pos.z * pos.y);
-
-	//BEWARE OF FLOATING POINT EXCEPTION
-	
 	return (res);
 }
 

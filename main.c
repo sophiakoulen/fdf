@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:41:58 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/19 13:40:34 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/20 14:29:50 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int main(int argc, char **argv)
 	{
 		return (0);
 	}
-	printf("rows: %d\n cols: %d\n", map.rows, map.cols);
 	do_rendering(&map);
 	return (0);
 }
