@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 15:18:18 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/20 16:58:49 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/20 17:28:49 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@ t_vector3	get_coordinate(t_map *map, int i, int j)
 	return (res);
 }
 
+float	get_ratio(t_map *map, int i, int j, t_param *param)
+{
+	float	value;
+	float	range;
+
+	value = map->map[i][j] - param->min;
+	range = param->max - param->min;
+	return (value / range);
+}
+
 void	draw_row(t_map *map, int row, t_param *param, t_img_data *img)
 {
 	int			i;
@@ -34,8 +44,8 @@ void	draw_row(t_map *map, int row, t_param *param, t_img_data *img)
 	{
 		line.p0 = get_coordinate(map, row, i);
 		line.p1 = get_coordinate(map, row, i + 1);
-		ratio0 = (float)(map->map[row][i] - param->min) / param->max;
-		ratio1 = (float)(map->map[row][i + 1] - param->min) / param->max;
+		ratio0 = get_ratio(map, row, i, param);
+		ratio1 = get_ratio(map, row, i + 1, param);
 		line.clr0 = color_lerp(START_CLR, END_CLR, ratio0);
 		line.clr1 = color_lerp(START_CLR, END_CLR, ratio1);
 		plot_line(line, param, img);
@@ -55,8 +65,8 @@ void	draw_col(t_map *map, int col, t_param *param, t_img_data *img)
 	{
 		line.p0 = get_coordinate(map, i, col);
 		line.p1 = get_coordinate(map, i + 1, col);
-		ratio0 = (float)(map->map[i][col] - param->min) / param->max;
-		ratio1 = (float)(map->map[i + 1][col] - param->min) / param->max;
+		ratio0 = get_ratio(map, i, col, param);
+		ratio1 = get_ratio(map, i + 1, col, param);
 		line.clr0 = color_lerp(START_CLR, END_CLR, ratio0);
 		line.clr1 = color_lerp(START_CLR, END_CLR, ratio1);
 		plot_line(line, param, img);

@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 13:23:39 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/20 17:01:37 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/20 17:11:16 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	init_param(t_param *param, t_map *map)
 		exit(EXIT_FAILURE);
 	}
 	retrieve_limits(param);
-	printf("min: %d max: %d\n", param->min, param->max);
 	adjust_scale(param);
 }
 
