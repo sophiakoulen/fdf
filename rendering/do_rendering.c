@@ -14,7 +14,7 @@
 
 void	register_events(t_param *param)
 {
-	mlx_hook(param->window, EVENT_CLOSE, 0, handle_close, 0);
+	mlx_hook(param->window, EVENT_CLOSE, 0, handle_close, param);
 	mlx_hook(param->window, EVENT_KEYDOWN, 0, handle_keydown, param);
 }
 
