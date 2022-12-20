@@ -6,22 +6,15 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 11:54:08 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/20 15:49:20 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/20 17:50:01 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-#define ESC 53
-
-#define UP 126
-#define DOWN 125
-#define LEFT 124
-#define RIGHT 123
-
 static void	clean_exit(t_param *param)
 {
-	(void)param;
+	cleanup_param(param);
 	exit(EXIT_SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 13:55:55 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/18 17:24:55 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/20 17:49:08 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,33 @@ int	get_line_count(int fd)
 		i++;
 	}
 	return (i);
+}
+
+void	retrieve_limits(t_param *param)
+{
+	t_map	*map;
+	int		max;
+	int		min;
+	int		i;
+	int		j;
+
+	map = param->map;
+	max = map->map[0][0];
+	min = map->map[0][0];
+	i = 0;
+	while (i < map->rows)
+	{
+		j = 0;
+		while (j < map->cols)
+		{
+			if (map->map[i][j] > max)
+				max = map->map[i][j];
+			if (map->map[i][j] < min)
+				min = map->map[i][j];
+			j++;
+		}
+		i++;
+	}
+	param->max = max;
+	param->min = min;
 }

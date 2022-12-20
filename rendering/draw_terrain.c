@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 15:18:18 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/20 17:28:49 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/20 17:56:24 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	draw_row(t_map *map, int row, t_param *param, t_img_data *img)
 		ratio1 = get_ratio(map, row, i + 1, param);
 		line.clr0 = color_lerp(START_CLR, END_CLR, ratio0);
 		line.clr1 = color_lerp(START_CLR, END_CLR, ratio1);
-		plot_line(line, param, img);
+		draw_line3d(line, param, img);
 		i++;
 	}
 }
@@ -69,7 +69,7 @@ void	draw_col(t_map *map, int col, t_param *param, t_img_data *img)
 		ratio1 = get_ratio(map, i + 1, col, param);
 		line.clr0 = color_lerp(START_CLR, END_CLR, ratio0);
 		line.clr1 = color_lerp(START_CLR, END_CLR, ratio1);
-		plot_line(line, param, img);
+		draw_line3d(line, param, img);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 #    By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/15 10:42:00 by skoulen           #+#    #+#              #
-#    Updated: 2022/12/20 16:39:17 by skoulen          ###   ########.fr        #
+#    Updated: 2022/12/20 18:02:52 by skoulen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,10 +35,12 @@ matrix.c \
 camera.c \
 do_rendering.c \
 draw_terrain.c \
-plot.c \
+line3d.c \
 color.c \
 lerp.c \
-rotation_matrices.c
+rotation_matrices.c \
+param.c \
+adjust_scale.c
 
 PARSING = parsing.c parsing_utils.c
 

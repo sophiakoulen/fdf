@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:41:47 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/20 16:59:01 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/20 17:59:22 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,13 @@
 /* events */
 # define EVENT_CLOSE 17
 # define EVENT_KEYDOWN 2
+
+/* key_codes */
+#define ESC 53
+#define UP 126
+#define DOWN 125
+#define LEFT 124
+#define RIGHT 123
 
 /* boilerplate stuff for images */
 typedef struct s_img_data
@@ -127,7 +134,12 @@ void		cleanup_map(int **map);
 void		cleanup_strs(char **strs);
 int			get_line_count(int fd);
 
+/* param */
+void		init_param(t_param *param, t_map *map);
+void		cleanup_param(t_param *param);
+
 /* do rendering */
+void		retrieve_limits(t_param *param);
 void		do_rendering(t_map *map);
 
 /* draw terrain */
@@ -139,8 +151,7 @@ void		pixel_put(t_img_data *data, int x, int y, int color);
 //int		is_put(t_img_data *img, int x, int y,  int color);
 
 /* plot */
-//void	plot_point(t_vector3 p, t_param *param, t_img_data *img);
-void		plot_line(t_line3d line3, t_param *param, t_img_data *img);
+void		draw_line3d(t_line3d line3, t_param *param, t_img_data *img);
 
 /* line drawing */
 void		bresenham_line(t_line2d line, t_img_data *data);
@@ -161,6 +172,8 @@ int			handle_keydown(int code, void *param);
 /* camera */
 t_camera	*new_camera(void);
 void		cleanup_camera(t_camera *camera);
+
+/* adjust scale */
 void		adjust_scale(t_param *param);
 
 /* render.c */
