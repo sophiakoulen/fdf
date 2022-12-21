@@ -6,7 +6,7 @@
 /*   By: skoulen <skoulen@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:41:47 by skoulen           #+#    #+#             */
-/*   Updated: 2022/12/20 17:59:22 by skoulen          ###   ########.fr       */
+/*   Updated: 2022/12/21 14:34:27 by skoulen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,6 @@
 # define END_CLR 0x00f9f871
 # define BACKGROUND  0x00263238 
 
-/* some colors */
-# define WHITE 0x00FFFFFF
-# define RED 0x00FF0000
-# define BLUE 0x000000FF
-# define GREEN 0x0000FF00
-
 /* window width and height */
 # define WIDTH 1600
 # define HEIGHT 1000
@@ -54,11 +48,11 @@
 # define EVENT_KEYDOWN 2
 
 /* key_codes */
-#define ESC 53
-#define UP 126
-#define DOWN 125
-#define LEFT 124
-#define RIGHT 123
+# define ESC 53
+# define UP 126
+# define DOWN 125
+# define LEFT 124
+# define RIGHT 123
 
 /* boilerplate stuff for images */
 typedef struct s_img_data
@@ -104,6 +98,7 @@ typedef struct s_param
 {
 	void		*mlx;
 	void		*window;
+	t_img_data	*img;
 	t_camera	*camera;
 	t_map		*map;
 	int			max;
@@ -126,16 +121,18 @@ typedef struct s_line2d
 	int			clr1;
 }	t_line2d;
 
+void		clean_exit(t_param *param, int status);
+
 /* parsing */
-int			**parse_map(char *filename, int *rows, int *cols);
+int			parse_map(char *filename, t_map *map);
 
 /* parsing utils */
-void		cleanup_map(int **map);
+void		cleanup_map(t_map *map);
 void		cleanup_strs(char **strs);
 int			get_line_count(int fd);
 
 /* param */
-void		init_param(t_param *param, t_map *map);
+void		set_param(t_param *param, t_map *map);
 void		cleanup_param(t_param *param);
 
 /* do rendering */
@@ -148,7 +145,6 @@ void		draw_terrain(t_map *map, t_param *param, t_img_data *img);
 
 /* puting a pixel to an image */
 void		pixel_put(t_img_data *data, int x, int y, int color);
-//int		is_put(t_img_data *img, int x, int y,  int color);
 
 /* plot */
 void		draw_line3d(t_line3d line3, t_param *param, t_img_data *img);
@@ -171,7 +167,7 @@ int			handle_keydown(int code, void *param);
 
 /* camera */
 t_camera	*new_camera(void);
-void		cleanup_camera(t_camera *camera);
+void		destroy_camera(t_camera *camera);
 
 /* adjust scale */
 void		adjust_scale(t_param *param);
